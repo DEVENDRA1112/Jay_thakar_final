@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elegant Restaurant Booking</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+  <style>
+    :root {
+      --primary-dark: #0a192f;
+      --primary-blue: #172a45;
+      --accent-orange: #ff7b25;
+      --accent-light: #f8f8f8;
+      --text-light: #e6f1ff;
+    }
+
+    body {
+      background-color: var(--primary-dark);
+      color: var(--text-light);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.7;
+    }
+
+    .section-title {
+      color: var(--accent-orange);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3 {
+      color: var(--text-light);
+    }
+
+    .btn-primary {
+      background-color: var(--accent-orange);
+      border: none;
+      padding: 12px 30px;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: transparent;
+      border: 2px solid var(--accent-orange);
+      color: var(--accent-orange);
+    }
+
+    .form-control, .form-select {
+      background-color: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--text-light);
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: var(--accent-orange);
+      box-shadow: 0 0 0 0.2rem rgba(255,123,37,0.3);
+    }
+
+    .img-rounded {
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .team-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent-orange);
+    }
+
+    .service-item:hover, .team-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    }
+
+    .bg-section {
+      background-color: var(--primary-blue);
+      padding: 60px 0;
+      border-radius: 12px;
+    }
+
+    .text-orange {
+      color: var(--accent-orange);
+    }
+
+    .wow {
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Services Section -->
+  <div class="container py-5 text-center">
+    <h5 class="section-title">Our Services</h5>
+    <h1 class="mb-5">What We Offer</h1>
+    <div class="row g-4">
+      <div class="col-md-3 wow">
+        <div class="bg-section service-item p-4">
+          <i class="fa fa-user-tie fa-2x text-orange mb-3"></i>
+          <h5>Master Chefs</h5>
+          <p>World-class chefs with years of experience and unique culinary styles.</p>
+        </div>
+      </div>
+      <div class="col-md-3 wow">
+        <div class="bg-section service-item p-4">
+          <i class="fa fa-utensils fa-2x text-orange mb-3"></i>
+          <h5>Quality Food</h5>
+          <p>We serve dishes made with the finest ingredients and authentic recipes.</p>
+        </div>
+      </div>
+      <div class="col-md-3 wow">
+        <div class="bg-section service-item p-4">
+          <i class="fa fa-cart-plus fa-2x text-orange mb-3"></i>
+          <h5>Online Order</h5>
+          <p>Order online and enjoy delicious meals from the comfort of your home.</p>
+        </div>
+      </div>
+      <div class="col-md-3 wow">
+        <div class="bg-section service-item p-4">
+          <i class="fa fa-headset fa-2x text-orange mb-3"></i>
+          <h5>24/7 Service</h5>
+          <p>Our team is always ready to serve you any time of the day or night.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Form Section -->
+  <div class="container py-5">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6 wow">
+        <img src="https://images.unsplash.com/photo-1555992336-03a23c5b67aa" class="img-fluid img-rounded" alt="Restaurant View" />
+      </div>
+      <div class="col-lg-6 wow">
+        <div class="bg-section p-5">
+          <h5 class="section-title">Reservation</h5>
+          <h1 class="mb-4">Book A Table</h1>
+          <form>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="Your Name" required>
+              </div>
+              <div class="col-md-6">
+                <input type="email" class="form-control" placeholder="Your Email" required>
+              </div>
+              <div class="col-md-6">
+                <input type="datetime-local" class="form-control" required>
+              </div>
+              <div class="col-md-6">
+                <select class="form-select" required>
+                  <option value="">Select People</option>
+                  <option value="1">1 Person</option>
+                  <option value="2">2 People</option>
+                  <option value="3">3 People</option>
+                  <option value="4">4+ People</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <textarea class="form-control" rows="3" placeholder="Special Requests"></textarea>
+              </div>
+              <div class="col-12 text-center">
+                <button type="submit" class="btn btn-primary w-100">Book Now</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Team Section -->
+  <div class="container py-5 text-center">
+    <h5 class="section-title">Team Members</h5>
+    <h1 class="mb-5">Our Master Chefs</h1>
+    <div class="row g-4">
+      <div class="col-md-3 wow">
+        <div class="team-item">
+          <img src="https://randomuser.me/api/portraits/men/31.jpg" class="team-img mb-3" alt="Chef John"/>
+          <h5>John Doe</h5>
+          <small>Head Chef</small>
+        </div>
+      </div>
+      <div class="col-md-3 wow">
+        <div class="team-item">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" class="team-img mb-3" alt="Chef Jane"/>
+          <h5>Jane Smith</h5>
+          <small>Sous Chef</small>
+        </div>
+      </div>
+      <div class="col-md-3 wow">
+        <div class="team-item">
+          <img src="https://randomuser.me/api/portraits/men/45.jpg" class="team-img mb-3" alt="Chef Mike"/>
+          <h5>Mike Johnson</h5>
+          <small>Pastry Chef</small>
+        </div>
+      </div>
+      <div class="col-md-3 wow">
+        <div class="team-item">
+          <img src="https://randomuser.me/api/portraits/women/47.jpg" class="team-img mb-3" alt="Chef Sarah"/>
+          <h5>Sarah Williams</h5>
+          <small>Line Cook</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
