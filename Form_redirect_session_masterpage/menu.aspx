@@ -9,28 +9,16 @@
     <meta content="" name="keywords" />
     <meta content="" name="description" />
 
-    <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon" />
-
-    <!-- Google Web Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet" />
-
-    <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
-
-    <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet" />
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
-    <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
 
-    <!-- INLINE ORDER BUTTON CSS -->
     <style>
         .order-btn {
             background: #28a745;
@@ -40,6 +28,14 @@
             border-radius: 8px;
             margin-top: 7px;
             font-weight: bold;
+        }
+
+        .filter-bar {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-top: -24px;
+            margin-bottom: 24px;
         }
     </style>
 </head>
@@ -67,6 +63,7 @@
                                 <div class="dropdown-menu m-0">
                                     <a href="Tbooking.aspx" class="dropdown-item">Booking</a>
                                     <a href="team.aspx" class="dropdown-item">Our Team</a>
+                                    <a href="UserDashboard.aspx" class="dropdown-item">UserDashboard</a>
                                     <a href="testimonial.aspx" class="dropdown-item">Testimonial</a>
                                 </div>
                             </div>
@@ -95,6 +92,32 @@
                 </div>
             </div>
             <!-- Navbar & Hero End -->
+
+            <!-- Filter Bar -->
+            <div class="container">
+                <div class="filter-bar">
+                    <div class="row g-2 align-items-center">
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control"
+                                placeholder="Search food (name or description)"></asp:TextBox>
+                        </div>
+                        <div class="col-md-3">
+                            <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-select">
+                                <asp:ListItem Text="All" Value=""></asp:ListItem>
+                                <asp:ListItem Text="Breakfast" Value="Breakfast"></asp:ListItem>
+                                <asp:ListItem Text="Lunch" Value="Lunch"></asp:ListItem>
+                                <asp:ListItem Text="Dinner" Value="Dinner"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="col-md-3 d-flex gap-2">
+                            <asp:Button ID="btnFilter" runat="server" CssClass="btn btn-primary w-100"
+                                Text="Filter" OnClick="btnFilter_Click" />
+                            <asp:Button ID="btnClear" runat="server" CssClass="btn btn-secondary w-100"
+                                Text="Clear" OnClick="btnClear_Click" />
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Menu Start -->
             <div class="container-xxl py-5">
@@ -145,8 +168,7 @@
                                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                             <span><%# Eval("ItemName") %></span>
-                                                            <span class="text-primary">₹<%# Eval("Price") %></span>
-                                                        </h5>
+                                                            <span class="text-primary">₹<%# Eval("Price") %></span></h5>
                                                         <small class="fst-italic"><%# Eval("Description") %></small>
                                                         <asp:Button runat="server" Text="Add" CssClass="order-btn" />
                                                     </div>
@@ -167,8 +189,7 @@
                                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                             <span><%# Eval("ItemName") %></span>
-                                                            <span class="text-primary">₹<%# Eval("Price") %></span>
-                                                        </h5>
+                                                            <span class="text-primary">₹<%# Eval("Price") %></span></h5>
                                                         <small class="fst-italic"><%# Eval("Description") %></small>
                                                         <asp:Button runat="server" Text="Add" CssClass="order-btn" />
                                                     </div>
@@ -189,8 +210,7 @@
                                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                             <span><%# Eval("ItemName") %></span>
-                                                            <span class="text-primary">₹<%# Eval("Price") %></span>
-                                                        </h5>
+                                                            <span class="text-primary">₹<%# Eval("Price") %></span></h5>
                                                         <small class="fst-italic"><%# Eval("Description") %></small>
                                                         <asp:Button runat="server" Text="Add" CssClass="order-btn" />
                                                     </div>
@@ -206,11 +226,14 @@
             </div>
             <!-- Menu End -->
 
+            <p><asp:Button ID="Button1" runat="server" Text="Crystal Report" OnClick="Button1_Click" /></p>
+
             <!-- Footer Start -->
-            <!-- ...Your footer and scripts unchanged... -->
+            <!-- ...Your footer unchanged... -->
             <!-- Footer End -->
         </div>
     </form>
+
     <!-- Javascript files -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

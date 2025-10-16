@@ -4,10 +4,14 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
 
+using CrystalDecisions.Shared;
+using CrystalDecisions.CrystalReports.Engine;
+
 namespace Form_redirect_session_masterpage
 {
     public partial class testimonial : System.Web.UI.Page
     {
+        ReportDocument crystalReport = new ReportDocument();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -75,6 +79,27 @@ namespace Form_redirect_session_masterpage
                         rptReviews.DataBind();
                     }
                 }
+            }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                string sql = "SELECT Id, Name, Profession, Review FROM Testimonials";
+                DataSet ds = new DataSet();
+                SqlDataAdapter adp = new SqlDataAdapter(sql, con);
+                adp.Fill(ds);
+
+                crystalReport.Load(Server.MapPath("~/CRTestimonials.rpt"));
+                crystalReport.SetDataSource(ds.Tables[0]);
+
+
+                crystalReport.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Testimonial_Crystal_Report");
+                crystalReport.Close();
+                crystalReport.Dispose();
+                Response.End();
             }
         }
     }

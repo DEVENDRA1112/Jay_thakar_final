@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSPayment" targetNamespace="http://tempuri.org/DSPayment.xsd" xmlns:mstns="http://tempuri.org/DSPayment.xsd" xmlns="http://tempuri.org/DSPayment.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSPayment" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DSPayment" msprop:Generator_DataSetName="DSPayment">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Payment" msprop:Generator_RowEvHandlerName="PaymentRowChangeEventHandler" msprop:Generator_RowDeletedName="PaymentRowDeleted" msprop:Generator_RowDeletingName="PaymentRowDeleting" msprop:Generator_RowEvArgName="PaymentRowChangeEvent" msprop:Generator_TablePropName="Payment" msprop:Generator_RowChangedName="PaymentRowChanged" msprop:Generator_RowChangingName="PaymentRowChanging" msprop:Generator_TableClassName="PaymentDataTable" msprop:Generator_RowClassName="PaymentRow" msprop:Generator_TableVarName="tablePayment" msprop:Generator_UserTableName="Payment">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PaymentID" msprop:Generator_ColumnPropNameInRow="PaymentID" msprop:Generator_ColumnPropNameInTable="PaymentIDColumn" msprop:Generator_ColumnVarNameInTable="columnPaymentID" msprop:Generator_UserColumnName="PaymentID" type="xs:string" minOccurs="0" />
+              <xs:element name="BookingID" msprop:Generator_ColumnPropNameInRow="BookingID" msprop:Generator_ColumnPropNameInTable="BookingIDColumn" msprop:Generator_ColumnVarNameInTable="columnBookingID" msprop:Generator_UserColumnName="BookingID" type="xs:string" minOccurs="0" />
+              <xs:element name="PaymentStatus" msprop:Generator_ColumnPropNameInRow="PaymentStatus" msprop:Generator_ColumnPropNameInTable="PaymentStatusColumn" msprop:Generator_ColumnVarNameInTable="columnPaymentStatus" msprop:Generator_UserColumnName="PaymentStatus" type="xs:string" minOccurs="0" />
+              <xs:element name="PaymentDate" msprop:Generator_ColumnPropNameInRow="PaymentDate" msprop:Generator_ColumnPropNameInTable="PaymentDateColumn" msprop:Generator_ColumnVarNameInTable="columnPaymentDate" msprop:Generator_UserColumnName="PaymentDate" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

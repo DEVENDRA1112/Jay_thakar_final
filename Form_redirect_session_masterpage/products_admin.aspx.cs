@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Web.UI.WebControls;
 
 namespace Form_redirect_session_masterpage
 {
@@ -39,16 +41,22 @@ namespace Form_redirect_session_masterpage
         private void LoadMenuItemsGrid()
         {
             using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlDataAdapter da = new SqlDataAdapter(
+                "SELECT ItemID, Category, ItemName, Price, Description, ImageUrl FROM MenuItems ORDER BY ItemName", con))
             {
-                string query = "SELECT ItemID, Category, ItemName, Price, Description, ImageUrl FROM MenuItems ORDER BY ItemName";
-                SqlCommand cmd = new SqlCommand(query, con);
-                con.Open();
-                var reader = cmd.ExecuteReader();
-                gvMenuItems.DataSource = reader;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                gvMenuItems.DataSource = dt;   // DataTable supports paging scenarios
                 gvMenuItems.DataBind();
-                con.Close();
             }
         }
+
+        protected void gvMenuItems_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvMenuItems.PageIndex = e.NewPageIndex;
+            LoadMenuItemsGrid(); // reload fresh DataTable and bind
+        }
+
 
         protected void btnAddItem_Click(object sender, EventArgs e)
         {
@@ -77,8 +85,10 @@ namespace Form_redirect_session_masterpage
                 Directory.CreateDirectory(imageFolder);
             }
 
-            string imageFileName = Path.GetFileName(fuImage.PostedFile.FileName);
-            string savePath = Path.Combine(imageFolder, imageFileName);
+            // Generate a unique file name to avoid overwrite conflicts
+            string ext = Path.GetExtension(fuImage.FileName);
+            string uniqueName = Guid.NewGuid().ToString("N") + ext;
+            string savePath = Path.Combine(imageFolder, uniqueName);
 
             try
             {
@@ -90,7 +100,7 @@ namespace Form_redirect_session_masterpage
                 return;
             }
 
-            string img = "images/menu/" + imageFileName;
+            string img = "images/menu/" + uniqueName;
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -130,6 +140,7 @@ namespace Form_redirect_session_masterpage
                 lblDeleteStatus.Text = "Please select a valid menu item to delete.";
                 return;
             }
+
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 string query = "DELETE FROM MenuItems WHERE ItemID = @ItemID";

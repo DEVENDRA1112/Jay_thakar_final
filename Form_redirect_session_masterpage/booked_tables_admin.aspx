@@ -78,21 +78,29 @@
                 </div>
             </div>
         </nav>
+
         <!-- Booked Tables Section -->
         <div class="container py-5">
             <h2 class="mb-4">Booked Tables</h2>
             <asp:Label ID="lblBookedMessage" runat="server" CssClass="status-message"></asp:Label>
-            <asp:GridView ID="gvBookedTables" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-striped">
+
+            <asp:GridView ID="gvBookedTables" runat="server"
+                AutoGenerateColumns="False"
+                CssClass="table table-bordered table-striped"
+                DataKeyNames="BookingID"
+                OnRowDeleting="gvBookedTables_RowDeleting">
                 <Columns>
-                    <asp:BoundField DataField="BookingID" HeaderText="Booking ID" />
+                    <asp:BoundField DataField="BookingID" HeaderText="Booking ID" ReadOnly="True" />
                     <asp:BoundField DataField="TableName" HeaderText="Table Name" />
                     <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" />
                     <asp:BoundField DataField="BookingDateTime" HeaderText="Booking Date & Time" DataFormatString="{0:yyyy-MM-dd HH:mm}" />
                     <asp:BoundField DataField="DurationHours" HeaderText="Duration (Hours)" />
+                    <asp:CommandField ShowDeleteButton="True" DeleteText="Delete" />
                 </Columns>
             </asp:GridView>
         </div>
     </form>
+
     <script src="js_admin/jquery-3.3.1.min.js"></script>
     <script src="js_admin/bootstrap.min.js"></script>
 </body>

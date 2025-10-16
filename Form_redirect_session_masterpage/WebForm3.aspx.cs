@@ -3,6 +3,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
+using CrystalDecisions.Shared;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace Form_redirect_session_masterpage
 {
@@ -11,6 +13,8 @@ namespace Form_redirect_session_masterpage
         string s = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
         SqlConnection con;
         SqlCommand cmd;
+        ReportDocument crystalReport = new ReportDocument();
+        //SqlConnection con = new SqlConnection();
 
         void getcon()
         {
@@ -87,6 +91,28 @@ namespace Form_redirect_session_masterpage
                 {
                     con.Close();
                 }
+            }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                string sql = "SELECT Id, Name, Email, Password FROM Users";
+                DataSet ds = new DataSet();
+                SqlDataAdapter adp = new SqlDataAdapter(sql, con);
+                adp.Fill(ds);
+
+                crystalReport.Load(Server.MapPath("~/CRUsers.rpt"));
+                crystalReport.SetDataSource(ds.Tables[0]);
+
+                
+
+                crystalReport.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Users_Crystal_Report");
+                crystalReport.Close();
+                crystalReport.Dispose();
+                Response.End();
             }
         }
     }

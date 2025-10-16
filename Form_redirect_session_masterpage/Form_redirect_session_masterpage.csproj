@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.3\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
     </Reference>
@@ -238,6 +242,61 @@
     <Content Include="products_admin.aspx" />
     <Content Include="products_admin.html" />
     <Content Include="READ-ME.txt" />
+    <Content Include="DSUsers.xsc">
+      <DependentUpon>DSUsers.xsd</DependentUpon>
+    </Content>
+    <Content Include="DSTestimonials.xsc">
+      <DependentUpon>DSTestimonials.xsd</DependentUpon>
+    </Content>
+    <Content Include="DSMenuItems.xsc">
+      <DependentUpon>DSMenuItems.xsd</DependentUpon>
+    </Content>
+    <Content Include="DSBooking.xsc">
+      <DependentUpon>DSBooking.xsd</DependentUpon>
+    </Content>
+    <None Include="DSBooking.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSBooking.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DSBooking.xss">
+      <DependentUpon>DSBooking.xsd</DependentUpon>
+    </Content>
+    <None Include="DSMenuItems.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSMenuItems.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DSMenuItems.xss">
+      <DependentUpon>DSMenuItems.xsd</DependentUpon>
+    </Content>
+    <Content Include="DSPayment.xsc">
+      <DependentUpon>DSPayment.xsd</DependentUpon>
+    </Content>
+    <None Include="DSPayment.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSPayment.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DSPayment.xss">
+      <DependentUpon>DSPayment.xsd</DependentUpon>
+    </Content>
+    <None Include="DSTestimonials.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSTestimonials.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DSTestimonials.xss">
+      <DependentUpon>DSTestimonials.xsd</DependentUpon>
+    </Content>
+    <None Include="DSUsers.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSUsers.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DSUsers.xss">
+      <DependentUpon>DSUsers.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.4.js" />
     <Content Include="Scripts\jquery-1.6.4.min.js" />
@@ -311,6 +370,61 @@
     <Compile Include="contact.aspx.designer.cs">
       <DependentUpon>contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CRBooking.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRBooking.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRMenuItems.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRMenuItems.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRPayments.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRPayments.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRTestimonials.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTestimonials.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRUsers.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRUsers.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DSBooking.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSBooking.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DSMenuItems.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSMenuItems.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DSPayment.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSPayment.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DSTestimonials.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSTestimonials.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DSUsers.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSUsers.xsd</DependentUpon>
+    </Compile>
     <Compile Include="login_admin.aspx.cs">
       <DependentUpon>login_admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -320,7 +434,6 @@
     </Compile>
     <Compile Include="Payment.aspx.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Payment.aspx.designer.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
@@ -526,6 +639,31 @@
     <Content Include="webfonts_admin\fa-solid-900.woff" />
     <Content Include="webfonts_admin\fa-solid-900.woff2" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CRBooking.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRBooking.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRMenuItems.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRMenuItems.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRPayments.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRPayments.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRTestimonials.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTestimonials.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUsers.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRUsers.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -541,7 +679,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65337</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44396/</IISUrl>
+          <IISUrl>https://localhost:44315/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -54,6 +54,9 @@
             New here?
             <a class="link-light" href="WebForm4.aspx">Create account</a>
           </p>
+            <p>
+                <asp:Button ID="Button1" runat="server" Text="User Report" OnClick="Button1_Click" />
+            </p>
         </div>
       </div>
     </div>

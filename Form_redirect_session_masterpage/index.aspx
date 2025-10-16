@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" Inherits="Form_redirect_session_masterpage.WebForm2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="Form_redirect_session_masterpage.WebForm2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" runat="server" contentplaceholderid="ContentPlaceHolder2">
@@ -757,7 +757,7 @@
                                         <div class="nav-item dropdown">
                                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                                             <div class="dropdown-menu m-0">
-                                                <a href="Tbooking.aspx" class="dropdown-item">Booking</a> <a href="team.aspx" class="dropdown-item">Our Team</a> <a href="testimonial.aspx" class="dropdown-item">Testimonial</a>
+                                                <a href="Tbooking.aspx" class="dropdown-item">Booking</a> <a href="team.aspx" class="dropdown-item">Our Team</a> <a href="UserDashboard.aspx" class="dropdown-item">UserDashboard</a> <a href="testimonial.aspx" class="dropdown-item">Testimonial</a>
                                             </div>
                                         </div>
                                         <a href="contact.aspx" class="nav-item nav-link">Contact</a>

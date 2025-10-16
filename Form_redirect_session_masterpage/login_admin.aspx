@@ -1,17 +1,14 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login_admin.aspx.cs" Inherits="Form_redirect_session_masterpage.login_admin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login_admin.aspx.cs" Inherits="Form_redirect_session_masterpage.login_admin" UnobtrusiveValidationMode="None" %>
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Login Page - Product Admin Template</title>
-    <!-- CDN Font Awesome: use this for all icons! -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
     <link rel="stylesheet" href="css_admin/bootstrap.min.css" />
     <link rel="stylesheet" href="css_admin/templatemo-style.css" />
-
 </head>
 <body>
     <form id="form1" runat="server">
@@ -21,13 +18,7 @@
                     <i class="fas fa-cube fa-lg mr-2" style="color: #ffa500;"></i>
                     <h1 class="tm-site-title mb-0" style="font-size: 1.7rem;">PRODUCT ADMIN</h1>
                 </a>
-                <button class="navbar-toggler ml-auto mr-0"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
+                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars tm-nav-icon"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -39,14 +30,9 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#"
-                               id="navbarDropdown" role="button"
-                               data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="far fa-file-alt fa-lg"></i>
-                                <span class="ml-2">
-                                    Reports <i class="fas fa-angle-down"></i>
-                                </span>
+                                <span class="ml-2">Reports <i class="fas fa-angle-down"></i></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Daily Report</a>
@@ -67,14 +53,9 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#"
-                               id="navbarDropdown" role="button"
-                               data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-cog fa-lg"></i>
-                                <span class="ml-2">
-                                    Settings <i class="fas fa-angle-down"></i>
-                                </span>
+                                <span class="ml-2">Settings <i class="fas fa-angle-down"></i></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Profile</a>
@@ -94,6 +75,7 @@
                 </div>
             </div>
         </nav>
+
         <div class="container tm-mt-big tm-mb-big">
             <div class="row">
                 <div class="col-12 mx-auto tm-login-col">
@@ -108,12 +90,12 @@
                                 <asp:Panel ID="pnlLogin" runat="server" CssClass="tm-login-form">
                                     <div class="form-group">
                                         <label for="txtUsername">Username</label>
-                                        <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control validate" required="true"></asp:TextBox>
+                                        <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control validate"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="rfvUser" runat="server" ControlToValidate="txtUsername" ErrorMessage="*" ForeColor="Red" Display="Static" />
                                     </div>
                                     <div class="form-group mt-3">
                                         <label for="txtPassword">Password</label>
-                                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control validate" required="true"></asp:TextBox>
+                                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control validate"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="rfvPass" runat="server" ControlToValidate="txtPassword" ErrorMessage="*" ForeColor="Red" Display="Static" />
                                     </div>
                                     <div class="form-group mt-4">
@@ -121,13 +103,13 @@
                                     </div>
                                     <asp:Button ID="btnForgot" runat="server" Text="Forgot your password?" CssClass="mt-5 btn btn-primary btn-block text-uppercase" />
                                 </asp:Panel>
-                                <%--<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>--%>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <footer class="tm-footer row tm-mt-small">
             <div class="col-12 font-weight-light">
                 <p class="text-center text-white mb-0 px-4 small">
@@ -136,6 +118,7 @@
                 </p>
             </div>
         </footer>
+
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
     </form>

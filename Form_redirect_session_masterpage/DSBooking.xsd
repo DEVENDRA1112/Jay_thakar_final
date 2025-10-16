@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSBooking" targetNamespace="http://tempuri.org/DSBooking.xsd" xmlns:mstns="http://tempuri.org/DSBooking.xsd" xmlns="http://tempuri.org/DSBooking.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSBooking" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DSBooking" msprop:Generator_DataSetName="DSBooking">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Booking" msprop:Generator_RowEvHandlerName="BookingRowChangeEventHandler" msprop:Generator_RowDeletedName="BookingRowDeleted" msprop:Generator_RowDeletingName="BookingRowDeleting" msprop:Generator_RowEvArgName="BookingRowChangeEvent" msprop:Generator_TablePropName="Booking" msprop:Generator_RowChangedName="BookingRowChanged" msprop:Generator_RowChangingName="BookingRowChanging" msprop:Generator_TableClassName="BookingDataTable" msprop:Generator_RowClassName="BookingRow" msprop:Generator_TableVarName="tableBooking" msprop:Generator_UserTableName="Booking">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BookingID" msprop:Generator_ColumnPropNameInRow="BookingID" msprop:Generator_ColumnPropNameInTable="BookingIDColumn" msprop:Generator_ColumnVarNameInTable="columnBookingID" msprop:Generator_UserColumnName="BookingID" type="xs:string" minOccurs="0" />
+              <xs:element name="TableID" msprop:Generator_ColumnPropNameInRow="TableID" msprop:Generator_ColumnPropNameInTable="TableIDColumn" msprop:Generator_ColumnVarNameInTable="columnTableID" msprop:Generator_UserColumnName="TableID" type="xs:string" minOccurs="0" />
+              <xs:element name="CustomerName" msprop:Generator_ColumnPropNameInRow="CustomerName" msprop:Generator_ColumnPropNameInTable="CustomerNameColumn" msprop:Generator_ColumnVarNameInTable="columnCustomerName" msprop:Generator_UserColumnName="CustomerName" type="xs:string" minOccurs="0" />
+              <xs:element name="BookingDateTime" msprop:Generator_ColumnPropNameInRow="BookingDateTime" msprop:Generator_ColumnPropNameInTable="BookingDateTimeColumn" msprop:Generator_ColumnVarNameInTable="columnBookingDateTime" msprop:Generator_UserColumnName="BookingDateTime" type="xs:string" minOccurs="0" />
+              <xs:element name="DurationHours" msprop:Generator_ColumnPropNameInRow="DurationHours" msprop:Generator_ColumnPropNameInTable="DurationHoursColumn" msprop:Generator_ColumnVarNameInTable="columnDurationHours" msprop:Generator_UserColumnName="DurationHours" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
+              <xs:element name="PaymentStatus" msprop:Generator_ColumnPropNameInRow="PaymentStatus" msprop:Generator_ColumnPropNameInTable="PaymentStatusColumn" msprop:Generator_ColumnVarNameInTable="columnPaymentStatus" msprop:Generator_UserColumnName="PaymentStatus" type="xs:string" minOccurs="0" />
+              <xs:element name="BookingStatus" msprop:Generator_ColumnPropNameInRow="BookingStatus" msprop:Generator_ColumnPropNameInTable="BookingStatusColumn" msprop:Generator_ColumnVarNameInTable="columnBookingStatus" msprop:Generator_UserColumnName="BookingStatus" type="xs:string" minOccurs="0" />
+              <xs:element name="Phone" msprop:Generator_ColumnPropNameInRow="Phone" msprop:Generator_ColumnPropNameInTable="PhoneColumn" msprop:Generator_ColumnVarNameInTable="columnPhone" msprop:Generator_UserColumnName="Phone" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalAmount" msprop:Generator_ColumnPropNameInRow="TotalAmount" msprop:Generator_ColumnPropNameInTable="TotalAmountColumn" msprop:Generator_ColumnVarNameInTable="columnTotalAmount" msprop:Generator_UserColumnName="TotalAmount" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

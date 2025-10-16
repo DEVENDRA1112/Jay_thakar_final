@@ -56,6 +56,7 @@
                             <div class="dropdown-menu m-0">
                                 <a href="Tbooking.aspx" class="dropdown-item">Booking</a>
                                 <a href="team.aspx" class="dropdown-item">Our Team</a>
+                                <a href="UserDashboard.aspx" class="dropdown-item">UserDashboard</a>
                                 <a href="testimonial.aspx" class="dropdown-item active">Testimonial</a>
                             </div>
                         </div>
@@ -126,6 +127,9 @@
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
+                <p>
+                    <asp:Button ID="Button1" runat="server" Text="Testimonial Crystal Report" OnClick="Button1_Click" />
+                </p>
             </div>
         </div>
         <!-- Testimonial Display End -->

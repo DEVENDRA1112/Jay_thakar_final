@@ -2,7 +2,6 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Form_redirect_session_masterpage
@@ -21,77 +20,45 @@ namespace Form_redirect_session_masterpage
                 }
 
                 litUserName.Text = Session["Name"].ToString();
-                LoadDashboardData();
+                LoadBookings();
             }
         }
 
-        private void LoadDashboardData()
+        private void LoadBookings()
         {
             string customerName = Session["Name"].ToString();
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                // Get booking statistics
-                string statsQuery = @"
-                    SELECT 
-                        COUNT(*) as TotalBookings,
-                        SUM(CASE WHEN Status = 'Confirmed' THEN 1 ELSE 0 END) as ConfirmedBookings,
-                        SUM(CASE WHEN Status = 'Pending' THEN 1 ELSE 0 END) as PendingBookings,
-                        SUM(CASE WHEN Status = 'Cancelled' THEN 1 ELSE 0 END) as CancelledBookings
-                    FROM Bookings 
-                    WHERE CustomerName = @CustomerName";
-
-                SqlCommand statsCmd = new SqlCommand(statsQuery, con);
-                statsCmd.Parameters.AddWithValue("@CustomerName", customerName);
-
-                con.Open();
-                SqlDataReader reader = statsCmd.ExecuteReader();
-                if (reader.Read())
-                {
-                    litTotalBookings.Text = reader["TotalBookings"].ToString();
-                    litConfirmedBookings.Text = reader["ConfirmedBookings"].ToString();
-                    litPendingBookings.Text = reader["PendingBookings"].ToString();
-                    litCancelledBookings.Text = reader["CancelledBookings"].ToString();
-                }
-                reader.Close();
-
-                // Get booking history
-                string historyQuery = @"
+                string query = @"
                     SELECT 
                         b.BookingID,
-                        b.TableID,
-                        b.CustomerName,
-                        b.BookingDateTime,
-                        b.DurationHours,
-                        b.Status,
-                        b.PaymentStatus,
                         t.TableName,
-                        CASE 
-                            WHEN b.Status = 'Confirmed' THEN 'confirmed'
-                            WHEN b.Status = 'Pending' THEN 'pending'
-                            WHEN b.Status = 'Cancelled' THEN 'cancelled'
-                            ELSE 'pending'
-                        END as StatusClass,
-                        CASE 
-                            WHEN b.PaymentStatus = 'Completed' THEN 'confirmed'
-                            WHEN b.PaymentStatus = 'Pending' THEN 'pending'
-                            WHEN b.PaymentStatus = 'Failed' THEN 'cancelled'
-                            ELSE 'pending'
-                        END as PaymentStatusClass
+                        b.BookingDateTime,
+                        b.CustomerName,
+                        ISNULL(SUM(bm.ItemTotal), 0) AS TotalPrice
                     FROM Bookings b
                     INNER JOIN RestaurantTables t ON b.TableID = t.TableID
+                    LEFT JOIN BookingMenus bm ON b.BookingID = bm.BookingID
                     WHERE b.CustomerName = @CustomerName
+                    GROUP BY b.BookingID, t.TableName, b.BookingDateTime, b.CustomerName
                     ORDER BY b.BookingDateTime DESC";
 
-                SqlDataAdapter da = new SqlDataAdapter(historyQuery, con);
-                da.SelectCommand.Parameters.AddWithValue("@CustomerName", customerName);
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@CustomerName", customerName);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
+
+                con.Open();
                 da.Fill(dt);
+                con.Close();
 
                 if (dt.Rows.Count > 0)
                 {
                     rptBookings.DataSource = dt;
                     rptBookings.DataBind();
+                    rptBookings.Visible = true;
                     lblNoBookings.Visible = false;
                 }
                 else
@@ -99,49 +66,49 @@ namespace Form_redirect_session_masterpage
                     rptBookings.Visible = false;
                     lblNoBookings.Visible = true;
                 }
-            }
-        }
 
-        // This method is called from the ASPX page
-        public string GetActionButton(object dataItem)
-        {
-            if (dataItem == null)
-                return "<span class='text-muted'>No actions</span>";
-
-            try
-            {
-                DataRowView row = (DataRowView)dataItem;
-                string status = row["Status"]?.ToString() ?? "";
-                string paymentStatus = row["PaymentStatus"]?.ToString() ?? "";
-                string bookingId = row["BookingID"]?.ToString() ?? "";
-
-                if (string.IsNullOrEmpty(bookingId))
-                    return "<span class='text-muted'>No actions</span>";
-
-                if (status == "Confirmed")
-                {
-                    return $"<button class='btn-sm btn-warning' onclick='cancelBooking({bookingId})'>Cancel</button>";
-                }
-                else if (status == "Pending" && paymentStatus == "Pending")
-                {
-                    return $"<button class='btn-sm btn-success' onclick='payNow({bookingId})'>Pay Now</button>";
-                }
-                else if (status == "Cancelled")
-                {
-                    return "<span class='text-muted'>Cancelled</span>";
-                }
-
-                return "<span class='text-muted'>No actions</span>";
-            }
-            catch (Exception ex)
-            {
-                return "<span class='text-muted'>Error</span>";
+                lblMessage.Visible = false; // Hide message on load
             }
         }
 
         protected void rptBookings_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            // This can be used if you switch to Button controls with CommandName
+            if (e.CommandName == "CancelBooking")
+            {
+                int bookingId;
+                if (int.TryParse(e.CommandArgument.ToString(), out bookingId))
+                {
+                    using (SqlConnection con = new SqlConnection(connectionString))
+                    {
+                        // 1. Delete from Payments table
+                        string deletePayments = "DELETE FROM Payments WHERE BookingID = @BookingID";
+                        SqlCommand cmdDeletePayments = new SqlCommand(deletePayments, con);
+                        cmdDeletePayments.Parameters.AddWithValue("@BookingID", bookingId);
+
+                        // 2. Delete from BookingMenus
+                        string deleteMenusQuery = "DELETE FROM BookingMenus WHERE BookingID = @BookingID";
+                        SqlCommand cmdDeleteMenus = new SqlCommand(deleteMenusQuery, con);
+                        cmdDeleteMenus.Parameters.AddWithValue("@BookingID", bookingId);
+
+                        // 3. Delete from Bookings table
+                        string deleteBookingQuery = "DELETE FROM Bookings WHERE BookingID = @BookingID";
+                        SqlCommand cmdDeleteBooking = new SqlCommand(deleteBookingQuery, con);
+                        cmdDeleteBooking.Parameters.AddWithValue("@BookingID", bookingId);
+
+                        con.Open();
+                        cmdDeletePayments.ExecuteNonQuery();
+                        cmdDeleteMenus.ExecuteNonQuery();
+                        cmdDeleteBooking.ExecuteNonQuery();
+                        con.Close();
+                    }
+
+
+                    lblMessage.Text = "Booking cancelled successfully.";
+                    lblMessage.Visible = true;
+
+                    LoadBookings(); // Refresh list to update UI
+                }
+            }
         }
     }
 }

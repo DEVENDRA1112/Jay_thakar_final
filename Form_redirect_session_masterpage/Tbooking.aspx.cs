@@ -5,13 +5,15 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Web;
 using System.Web.UI.WebControls;
+using CrystalDecisions.Shared;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace Form_redirect_session_masterpage
 {
     public partial class Tbooking : System.Web.UI.Page
     {
         string connectionString = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
-
+        ReportDocument crystalReport = new ReportDocument();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -219,6 +221,26 @@ namespace Form_redirect_session_masterpage
             Session["BookingTotalAmount"] = estimatedTotal.ToString();
 
             Response.Redirect("Payment.aspx");
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                string sql = "SELECT BookingID, TableID, CustomerName, BookingDateTime, DurationHours, Status, PaymentStatus, BookingStatus, Phone, TotalAmount FROM Bookings";
+                DataSet ds = new DataSet();
+                SqlDataAdapter adp = new SqlDataAdapter(sql, con);
+                adp.Fill(ds);
+
+                crystalReport.Load(Server.MapPath("~/CRBooking.rpt"));
+                crystalReport.SetDataSource(ds.Tables[0]);
+
+                crystalReport.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Booking_Crystal_Report");
+                crystalReport.Close();
+                crystalReport.Dispose();
+                Response.End();
+            }
         }
     }
 }
